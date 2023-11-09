@@ -1,0 +1,47 @@
+/ Classe Funcionario
+public class Funcionario {
+    private String nome;
+    private int matricula;
+
+    public Funcionario(String nome, int matricula) {
+        this.nome = nome;
+        this.matricula = matricula;
+    }
+
+    public void baterOPonto() {
+        System.out.println(nome + " bateu o ponto.");
+    }
+}
+
+// Classe Gerente
+public class Gerente extends Funcionario {
+    public Gerente(String nome, int matricula) {
+        super(nome, matricula);
+    }
+
+    public void fecharOCaixa() {
+        System.out.println(getNome() + " fechou o caixa.");
+    }
+}
+
+// Classe Vendedor
+public class Vendedor extends Funcionario {
+    public Vendedor(String nome, int matricula) {
+        super(nome, matricula);
+    }
+
+    public void realizarVenda() {
+        System.out.println(getNome() + " realizou uma venda.");
+    }
+}
+
+// Classe Faxineiro
+public class Faxineiro extends Funcionario {
+    public Faxineiro(String nome, int matricula) {
+        super(nome, matricula);
+    }
+
+    public void solicitarMaterial() {
+        System.out.println(getNome() + " solicitou material de limpeza.");
+    }
+}
