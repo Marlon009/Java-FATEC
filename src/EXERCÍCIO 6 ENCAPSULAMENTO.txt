@@ -1,0 +1,116 @@
+// EXERCÍCIO 6 ENCAPSULAMENTO
+
+// Criando uma classe chamada Carro
+public class Carro {
+  // Definindo os atributos do carro, como capacidade do tanque, nível de combustível, velocidade, motor e estado (ligado ou desligado)
+  private double capacidadeTanque;
+  private double nivelCombustivel;
+  private double velocidade;
+  private boolean motor;
+  private boolean estado;
+
+  // Criando um construtor para inicializar os atributos do carro com valores padrão
+  public Carro() {
+    capacidadeTanque = 50; // O tanque do carro tem capacidade para 50 litros de gasolina
+    nivelCombustivel = 0; // O nível de combustível inicial é zero
+    velocidade = 0; // A velocidade inicial é zero
+    motor = true; // O carro tem um motor
+    estado = false; // O carro está desligado inicialmente
+  }
+
+  // Criando um método para calcular o valor total para encher o tanque, recebendo como parâmetro o valor da gasolina
+  public double calcularValorTotal(double valorGasolina) {
+    // O valor total é igual ao valor da gasolina multiplicado pela quantidade de litros que faltam para encher o tanque
+    return valorGasolina * (capacidadeTanque - nivelCombustivel);
+  }
+
+  // Criando um método para ligar o carro, verificando se ele tem motor e se está desligado
+  public void ligar() {
+    if (motor && !estado) { // Se o carro tem motor e está desligado
+      estado = true; // Mudar o estado para ligado
+      System.out.println("O carro foi ligado."); // Imprimir uma mensagem na tela
+    } else { // Senão
+      System.out.println("O carro não pode ser ligado."); // Imprimir uma mensagem na tela
+    }
+  }
+
+  // Criando um método para desligar o carro, verificando se ele está ligado
+  public void desligar() {
+    if (estado) { // Se o carro está ligado
+      estado = false; // Mudar o estado para desligado
+      System.out.println("O carro foi desligado."); // Imprimir uma mensagem na tela
+    } else { // Senão
+      System.out.println("O carro não pode ser desligado."); // Imprimir uma mensagem na tela
+    }
+  }
+
+  // Criando um método para acelerar o carro, recebendo como parâmetro a quantidade de aceleração em km/h
+  public void acelerar(double aceleracao) {
+    if (estado && nivelCombustivel > 0) { // Se o carro está ligado e tem combustível
+      velocidade += aceleracao; // Aumentar a velocidade com a aceleração
+      if (velocidade > 180) { // Se a velocidade ultrapassar a capacidade do carro (180 km/h)
+        velocidade = 180; // Limitar a velocidade em 180 km/h
+      }
+      nivelCombustivel -= aceleracao / 10; // Diminuir o nível de combustível proporcionalmente à aceleração
+      if (nivelCombustivel < 0) { // Se o nível de combustível ficar negativo
+        nivelCombustivel = 0; // Zerar o nível de combustível
+      }
+      System.out.println("O carro acelerou " + aceleracao + " km/h e agora está a " + velocidade + " km/h."); // Imprimir uma mensagem na tela com a velocidade atual
+      System.out.println("O nível de combustível é " + nivelCombustivel + " litros."); // Imprimir uma mensagem na tela com o nível de combustível atual
+    } else { // Senão
+      System.out.println("O carro não pode acelerar."); // Imprimir uma mensagem na tela
+    }
+  }
+
+  // Criando um método para frear o carro, recebendo como parâmetro a quantidade de frenagem em km/h
+  public void frear(double frenagem) {
+    if (estado) { // Se o carro está ligado
+      velocidade -= frenagem; // Diminuir a velocidade com a frenagem
+      if (velocidade < 0) { // Se a velocidade ficar negativa
+        velocidade = 0; // Zerar a velocidade
+      }
+      System.out.println("O carro freou " + frenagem + " km/h e agora está a " + velocidade + " km/h."); // Imprimir uma mensagem na tela com a velocidade atual
+    } else { // Senão
+      System.out.println("O carro não pode frear."); // Imprimir uma mensagem na tela
+    }
+  }
+
+  // Criando métodos para fornecer e obter os valores dos atributos (set/get), caso aplicável
+
+  // Método para obter a capacidade do tanque
+  public double getCapacidadeTanque() {
+    return capacidadeTanque;
+  }
+
+  // Método para obter o nível de combustível
+  public double getNivelCombustivel() {
+    return nivelCombustivel;
+  }
+
+  // Método para obter a velocidade
+  public double getVelocidade() {
+    return velocidade;
+  }
+
+  // Método para obter o motor
+  public boolean getMotor() {
+    return motor;
+  }
+
+  // Método para obter o estado
+  public boolean getEstado() {
+    return estado;
+  }
+
+  // Método para definir o nível de combustível, recebendo como parâmetro o novo nível
+  public void setNivelCombustivel(double novoNivel) {
+    if (novoNivel >= 0 && novoNivel <= capacidadeTanque) { // Se o novo nível é válido (entre 0 e a capacidade do tanque)
+      nivelCombustivel = novoNivel; // Atualizar o nível de combustível com o novo nível
+      System.out.println("O nível de combustível foi alterado para " + nivelCombustivel + " litros."); // Imprimir uma mensagem na tela com o novo nível
+    } else { // Senão
+      System.out.println("O nível de combustível não pode ser alterado."); // Imprimir uma mensagem na tela
+    }
+  }
+}
+
+
